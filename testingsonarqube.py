@@ -84,5 +84,7 @@ print("Insertion Sort:", insertion_sort(unsorted_array))
 # Sort using Selection Sort
 print("Selection Sort:", selection_sort(unsorted_array))
 
-# Sort using Quick Sort
+
+# Sort using Quick Sort (Maintainability Issue)
 print("Quick Sort:", quicksort(unsorted_array))
+
