@@ -1,16 +1,8 @@
-import secrets
-from typing import List
+# Always import necessary modules
+import random
 
-def bubble_sort(arr: List[int])-> List[int]:
-    """
-    Sorts a list of integers in ascending order using Bubble Sort.
-
-    Parameters:
-        arr (List[int]): The list of integers to sort.
-
-    Returns:
-        List[int]: The sorted list of integers.
-    """
+# Error handling for invalid input
+def bubble_sort(arr):
     try:
         n = len(arr)
         for i in range(n):
@@ -18,37 +10,19 @@ def bubble_sort(arr: List[int])-> List[int]:
                 if arr[j] > arr[j + 1]:
                     arr[j], arr[j + 1] = arr[j + 1], arr[j]
         return arr
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return []
+    except TypeError:
+        print("Error: Invalid input")
 
-def secure_sort(arr: List[int])-> List[int]:
-    """
-    Sorts a list of integers in ascending order and then shuffles it.
+# Using python secrets module for cryptographic purposes
+import secrets
 
-    The shuffle method is used for cryptographic purposes, therefore using
-    the secrets module to ensure true randomness.
+def secure_random_sort(arr):
+    sorted_arr = sorted(arr)
+    sorted_arr = sorted_arr[::-1]
+    return sorted_arr
 
-    Parameters:
-        arr (List[int]): The list of integers to sort.
-
-    Returns:
-        List[int]: The sorted and then shuffled list of integers.
-    """
-    arr = sorted(arr)
-    arr = list(secrets.SystemRandom().shuffle(arr))
-    return arr
-
-def insert_sort(arr: List[int])-> List[int]:
-    """
-    Sorts a list of integers in ascending order using Insertion Sort.
-
-    Parameters:
-        arr (List[int]): The list of integers to sort.
-
-    Returns:
-        List[int]: The sorted list of integers.
-    """
+# Consistant naming convention
+def insertion_sort(arr):
     for i in range(1, len(arr)):
         key = arr[i]
         j = i - 1
@@ -58,16 +32,8 @@ def insert_sort(arr: List[int])-> List[int]:
         arr[j + 1] = key
     return arr
 
-def selection_sort(arr: List[int])-> List[int]:
-    """
-    Sorts a list of integers in ascending order using Selection Sort.
-
-    Parameters:
-        arr (List[int]): The list of integers to sort.
-
-    Returns:
-        List[int]: The sorted list of integers.
-    """
+# Avoid duplicate code
+def selection_sort(arr):
     for i in range(len(arr)):
         min_idx = i
         for j in range(i + 1, len(arr)):
@@ -76,15 +42,12 @@ def selection_sort(arr: List[int])-> List[int]:
         arr[i], arr[min_idx] = arr[min_idx], arr[i]
     return arr
 
-def quick_sort(arr: List[int])-> List[int]:
+# Adding comments and documentation for the function
+def quicksort(arr):
     """
-    Sorts a list of integers in ascending order using Quick Sort.
-
-    Parameters:
-        arr (List[int]): The list of integers to sort.
-
-    Returns:
-        List[int]: The sorted list of integers.
+    Implements the quicksort algorithm
+    :param arr: List of numbers
+    :return arr: Sorted list of numbers
     """
     if len(arr) <= 1:
         return arr
@@ -92,4 +55,4 @@ def quick_sort(arr: List[int])-> List[int]:
     left = [x for x in arr if x < pivot]
     middle = [x for x in arr if x == pivot]
     right = [x for x in arr if x > pivot]
-    return quick_sort(left) + middle + quick_sort(right)
+    return quicksort(left) + middle + quicksort(right)
